@@ -37,7 +37,7 @@ go
 
 if not exists(select * from sys.change_tracking_databases where database_id = db_id())
 begin
-    alter database ct_sample 
+    alter database fitappbuild22 
     set change_tracking = on
     (change_retention = 30 days, auto_cleanup = on)
 end
