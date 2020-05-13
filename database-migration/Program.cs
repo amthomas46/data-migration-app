@@ -8,6 +8,7 @@ namespace database_migration
     static int Main(string[] args)
     {
         var connectionString = Environment.GetEnvironmentVariable("ConnectionString");
+        Console.WriteLine(connectionString);
 
         var upgrader =
             DeployChanges.To
