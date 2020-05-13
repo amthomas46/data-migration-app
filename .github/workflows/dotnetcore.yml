@@ -22,5 +22,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Run
-      run: ::set-env name=ConnectionString::${{ secrets.CONNECTIONSTRING }} dotnet run
+      env: # Or as an environment variable
+        ConnectionString: ${{ secrets.CONNECTIONSTRING }}
+      run: dotnet run
     
