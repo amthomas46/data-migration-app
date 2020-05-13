@@ -22,5 +22,5 @@ jobs:
     - name: Run
       env: # Or as an environment variable
         ConnectionString: ${{ secrets.CONNECTIONSTRING }}
-      run: dotnet run
+      run: cd database-migration; dotnet run
     
