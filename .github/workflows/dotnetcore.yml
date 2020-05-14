@@ -23,4 +23,30 @@ jobs:
       env: # Or as an environment variable
         ConnectionString: ${{ secrets.CONNECTIONSTRING }}
       run: cd database-migration; dotnet run
+  
+  build-and-deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@master
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.102'
+
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+
+      - name: dotnet publish
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v1
+        with:
+          app-name: 'fitapp2'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_97f8621e18cf47c28bec05602d4e93e3 }}
+          package: ${{env.DOTNET_ROOT}}/myapp 
+
     
