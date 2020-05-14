@@ -36,10 +36,10 @@ jobs:
           dotnet-version: '3.1.102'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: cd database-migration; dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: cd database-migration; dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v1
