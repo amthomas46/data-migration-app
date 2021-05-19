@@ -14,7 +14,7 @@ namespace database_migration
             DeployChanges.To
                 .SqlDatabase(connectionString)
                 .WithScriptsFromFileSystem("./sql")    
-                .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+                //.WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
                 .LogToConsole()
                 .Build();
 
